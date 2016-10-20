@@ -16,6 +16,13 @@ to `sudo` usage.
     * `AWS_ACCESS_KEY_ID` (with your aws access key)
     * `AWS_SECRET_ACCESS_KEY` (with your aws secret key)
     * `AWS_BUCKET` (with your bucket name)
+3. Add script invocation to `after_script` like so: 
+
+    ```
+        after_script: git clone https://github.com/perfectsense/travis-sphinx-deploy.git && travis-sphinx-deploy/deploy.sh brightspot/developers-guide brightspot/developers-guide_build/html
+    ```
+
+    Example assumes Makefile is in `brightspot/developers-guide` and resulting build output will be in `brightspot/developers-guide_build/html` 
 
 **Setup Redirect**
 
