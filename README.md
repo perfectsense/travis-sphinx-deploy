@@ -19,7 +19,7 @@ to `sudo` usage.
 3. Add script invocation to `after_script` like so: 
 
     ```
-        after_script: git clone https://github.com/perfectsense/travis-sphinx-deploy.git && travis-sphinx-deploy/deploy.sh brightspot/developers-guide brightspot/developers-guide_build/html
+        after_script: git clone https://github.com/perfectsense/travis-sphinx-deploy.git && travis-sphinx-deploy/deploy.sh brightspot/developers-guide brightspot/developers-guide/_build/html
     ```
 
     Example assumes Makefile is in `brightspot/developers-guide` and resulting build output will be in `brightspot/developers-guide_build/html` 
