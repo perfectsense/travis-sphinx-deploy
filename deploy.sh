@@ -4,7 +4,7 @@ set -e -u
 
 # Sphinx Build
 sudo pip install --upgrade pip
-sudo pip install -r requirements.txt
+sudo pip install -r travis-sphinx-deploy/requirements.txt
 cd $1
 make html
 
