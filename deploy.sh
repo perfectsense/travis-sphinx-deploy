@@ -4,7 +4,7 @@ set -e -u
 
 # Sphinx Build
 sudo pip install --upgrade pip
-sudo pip install sphinx
+sudo pip install -r requirements.txt
 cd $1
 make html
 
