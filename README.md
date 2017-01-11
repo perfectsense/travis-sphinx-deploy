@@ -1,5 +1,11 @@
 # Travis Sphinx Deploy
 
+This script expects to find a requirements.txt file listing your pip dependencies. You can create this file using the following command:
+
+```
+    pip freeze > requirements.txt
+```
+
 ##Setup
 
 **S3**
