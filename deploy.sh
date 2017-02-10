@@ -6,7 +6,7 @@ set -e -u
 sudo pip install --upgrade pip
 sudo pip install -r requirements.txt
 cd $1
-make html
+sphinx-build -b html . _build/html
 
 #S3 Deploy
 if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
