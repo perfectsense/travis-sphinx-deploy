@@ -22,6 +22,7 @@ to `sudo` usage.
     * `AWS_ACCESS_KEY_ID` (with your aws access key)
     * `AWS_SECRET_ACCESS_KEY` (with your aws secret key)
     * `AWS_BUCKET` (with your bucket name)
+    * `AWS_ACL` Optional - defaults to `public-read`
 3. Add script invocation to `after_script` like so: 
 
     ```

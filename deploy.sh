@@ -12,18 +12,25 @@ make html
 if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
 
     sudo pip install awscli
+
+    acl="public-read"
+    if [[ "$AWS_ACL" ]]; then
+        acl=$AWS_ACL
+    fi
+
     echo "Deploying to bucket: $AWS_BUCKET"
+    echo "ACL: $acl"
 
     if [[ "$TRAVIS_BRANCH" == "release/"* ]]; then
 
         echo "Syncing release..."
         version=$(awk -F '/' '{print $2}' <<< $TRAVIS_BRANCH)
-        aws s3 sync $2 s3://$AWS_BUCKET/v$version --acl public-read
+        aws s3 sync $2 s3://$AWS_BUCKET/v$version --acl $AWS_ACL
     fi
 
     if [[ "$TRAVIS_BRANCH" == "master" ]]; then
 
         echo "Syncing latest..."
-        aws s3 sync $2 s3://$AWS_BUCKET/ --acl public-read  
+        aws s3 sync $2 s3://$AWS_BUCKET/ --acl $AWS_ACL 
     fi
 fi
