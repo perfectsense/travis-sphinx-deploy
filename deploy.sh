@@ -13,13 +13,10 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
 
     sudo pip install awscli
 
-    acl="public-read"
-    if [[ "$AWS_ACL" ]]; then
-        acl=$AWS_ACL
-    fi
+    AWS_ACL="${AWS_ACL-public-read}"
 
     echo "Deploying to bucket: $AWS_BUCKET"
-    echo "ACL: $acl"
+    echo "ACL: $AWS_ACL"
 
     if [[ "$TRAVIS_BRANCH" == "release/"* ]]; then
 
