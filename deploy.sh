@@ -28,6 +28,6 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
     if [[ "$TRAVIS_BRANCH" == "master" ]]; then
 
         echo "Syncing latest..."
-        aws s3 sync $2 s3://$AWS_BUCKET/ --acl $AWS_ACL 
+        aws s3 sync $2 s3://$AWS_BUCKET/ --acl $AWS_ACL --cache-control max-age=3600
     fi
 fi
