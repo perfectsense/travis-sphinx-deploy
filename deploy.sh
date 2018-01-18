@@ -22,12 +22,12 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
 
         echo "Syncing release..."
         version=$(awk -F '/' '{print $2}' <<< $TRAVIS_BRANCH)
-        aws s3 sync $2 s3://$AWS_BUCKET/v$version --acl $AWS_ACL --cache-control max-age=3600
+        aws s3 sync $2 s3://$AWS_BUCKET/v$version --acl $AWS_ACL --cache-control max-age=3600 --delete
     fi
 
     if [[ "$TRAVIS_BRANCH" == "master" ]]; then
 
         echo "Syncing latest..."
-        aws s3 sync $2 s3://$AWS_BUCKET/ --acl $AWS_ACL --cache-control max-age=3600
+        aws s3 sync $2 s3://$AWS_BUCKET/ --acl $AWS_ACL --cache-control max-age=3600 --delete
     fi
 fi
