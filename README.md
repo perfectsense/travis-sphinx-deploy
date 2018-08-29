@@ -42,7 +42,7 @@ an empty index.html file into the root of your bucket, and setup a redirect to y
 
 Performs the following actions:
 
-* Updates pip
+* Updates pip to version 9.0.3
 * Installs sphinx
 * Runs Sphinx
 * Deploys Sphinx site to S3 (directory changes for release branches)
