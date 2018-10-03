@@ -29,14 +29,14 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
 
     if [[ "$TRAVIS_BRANCH" == "master" ]]; then
 
-      echo "Moving versioned topics to temporary directory..."
-      aws s3 mv s3://$AWS_BUCKET/ version_backup/ --acl private --include "/v[3-9].[0-9]/*" --recursive 
+      # echo "Moving versioned topics to temporary directory..."
+      # aws s3 mv s3://$AWS_BUCKET/ tmp/ --acl private --include "/v[3-9].[0-9]/*" --recursive 
 
       echo "Syncing latest..."
       aws s3 sync $2 s3://$AWS_BUCKET/ --acl $AWS_ACL --cache-control max-age=3600 --delete
 
-      echo "Moving versioned topics back to public bucket..."
-      aws s3 mv version_backup/ s3://$AWS_BUCKET/ --recursive
+      # echo "Moving versioned topics back to public bucket..."
+      # aws s3 mv tmp/ s3://$AWS_BUCKET/ --acl $AWS_ACL --cache-control max-age=3600 --include "/v[3-9].[0-9]/*" --recursive
 
     fi
 else
