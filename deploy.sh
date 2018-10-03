@@ -42,3 +42,15 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
 else
   echo "As this build was for Pull Request $TRAVIS_PULL_REQUEST, there was no deployment to AWS."
 fi
+
+if [ -e "/tmp" ]; then
+  echo "directory /tmp exists"
+else
+  echo "directory /tmp does not exist"
+fi
+
+if [ -e "/tmp/v3.2" ]; then
+  echo "directory /tmp/v3.2 exists"
+else
+  echo "directory /tmp/v3.2 does not exist"
+fi
