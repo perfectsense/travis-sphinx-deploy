@@ -29,28 +29,20 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
 
     if [[ "$TRAVIS_BRANCH" == "master" ]]; then
 
-      # echo "Moving versioned topics to temporary directory..."
-      # aws s3 mv s3://$AWS_BUCKET/ tmp/ --acl private --include "/v[3-9].[0-9]/*" --recursive 
+      echo -n "Moving versioned topics to temporary directory..."
+      aws s3 mv s3://$AWS_BUCKET/ tmp/ --acl private --include "/v[3-9].[0-9]/*" --recursive 
+      echo "done"
+      tree -l
 
-      echo "Syncing latest..."
+      echo -n "Syncing latest..."
       aws s3 sync $2 s3://$AWS_BUCKET/ --acl $AWS_ACL --cache-control max-age=3600 --delete
+      echo "done"
 
-      # echo "Moving versioned topics back to public bucket..."
+      # echo -n "Moving versioned topics back to public bucket..."
       # aws s3 mv tmp/ s3://$AWS_BUCKET/ --acl $AWS_ACL --cache-control max-age=3600 --include "/v[3-9].[0-9]/*" --recursive
+      # echo "done"
 
     fi
 else
   echo "As this build was for Pull Request $TRAVIS_PULL_REQUEST, there was no deployment to AWS."
-fi
-
-if [ -e "/tmp" ]; then
-  echo "directory /tmp exists"
-else
-  echo "directory /tmp does not exist"
-fi
-
-if [ -e "/tmp/v3.2" ]; then
-  echo "directory /tmp/v3.2 exists"
-else
-  echo "directory /tmp/v3.2 does not exist"
 fi
