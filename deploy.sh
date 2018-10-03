@@ -9,7 +9,8 @@ sudo pip install -r requirements.txt
 cd $1
 make html
 
-#S3 Deploy
+# If this Travis job is not a pull request, 
+# assume it is a merge and deploy to S3
 if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
 
     sudo pip install awscli
@@ -38,4 +39,6 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
       aws s3 mv version_backup/ s3://$AWS_BUCKET/ --recursive
 
     fi
+else
+  echo "As this build was for Pull Request $TRAVIS_PULL_REQUEST, there was no deployment to AWS."
 fi
