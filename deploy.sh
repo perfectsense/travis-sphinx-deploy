@@ -45,4 +45,6 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
       echo "Done syching master"
 
     fi
+else
+   echo "As this build was for Pull Request $TRAVIS_PULL_REQUEST, there was no deployment to AWS."
 fi
