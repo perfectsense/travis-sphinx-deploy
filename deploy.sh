@@ -24,6 +24,9 @@ make html
 # If this Travis job is not a pull request, 
 # assume it is a merge and deploy to S3
 
+# public-read is default when AWS_ACL isn't set
+AWS_ACL="${AWS_ACL:-public-read}"
+
 if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
 
     sudo pip install awscli
@@ -34,14 +37,14 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
 
         version=$(awk -F '/' '{print $2}' <<< $TRAVIS_BRANCH)
         echo "Synching for release $version..."
-        aws s3 sync $2 s3://$AWS_BUCKET/v$version --acl public-read --cache-control max-age=3600 --delete
+        aws s3 sync $2 s3://$AWS_BUCKET/v$version --acl $AWS_ACL --cache-control max-age=3600 --delete
         echo "Done synching release $version"
     fi
 
     if [[ "$TRAVIS_BRANCH" == "master" ]]; then
     
       echo "Synching master..."
-      aws s3 sync $2 s3://$AWS_BUCKET/ --acl public-read --include "*" --exclude "v?.?/*"  --delete
+      aws s3 sync $2 s3://$AWS_BUCKET/ --acl $AWS_ACL --include "*" --exclude "v?.?/*"  --delete
       echo "Done syching master"
 
     fi
