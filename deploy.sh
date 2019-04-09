@@ -21,7 +21,12 @@ sudo pip install -r requirements.txt
 echo "Finished the pip install from requirements"
 sudo pip install -i https://test.pypi.org/simple/ --only-binary pygments-lexer-overrides==0.0.3
 echo "Finished the pip install from test.pypi"
-sudo python -m pygments-lexer-overrides
+echo "Finding marksafe"
+sudo find / -iname "marksafe*" 2>/dev/null
+echo "Finding pygments"
+sudo find / -iname "pygments*" 2>/dev/null
+# sudo python -m pygments-lexer-overrides
+sudo python -m pygments_lexer_overrides
 echo "Finished run of pygments-lexer-overrides"
 cd $1
 make html
