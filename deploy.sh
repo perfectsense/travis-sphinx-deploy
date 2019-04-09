@@ -18,9 +18,11 @@ set -e -u
 # Sphinx Build
 sudo pip install --upgrade pip==9.0.3
 sudo pip install -r requirements.txt
+print("Finished the pip install from requirements")
 sudo pip install -i https://test.pypi.org/simple/ --only-binary pygments-lexer-overrides==0.0.3
+print("Finished the pip install from test.pypi")
 sudo python -m pygments-lexer-overrides
-
+print("Finished run of pygments-lexer-overrides")
 cd $1
 make html
 
