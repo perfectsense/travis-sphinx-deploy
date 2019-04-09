@@ -18,7 +18,7 @@ set -e -u
 # Sphinx Build
 sudo pip install --upgrade pip==9.0.3
 sudo pip install -r requirements.txt
-sudo pip install -i https://test.pypi.org/simple/ pygments-lexer-overrides
+sudo pip install -i https://test.pypi.org/simple/ pygments-lexer-overrides==0.0.3
 python -m pygments-lexer-overrides
 
 cd $1
