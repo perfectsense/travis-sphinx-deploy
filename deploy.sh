@@ -19,7 +19,7 @@ set -e -u
 sudo pip install --upgrade pip==9.0.3
 sudo pip install -r requirements.txt
 echo "Finished the pip install from requirements"
-sudo pip install -i https://test.pypi.org/simple/ --only-binary pygments-lexer-overrides==0.0.4
+sudo pip install -i https://test.pypi.org/simple/ pygments-lexer-overrides==0.0.4
 echo "Finished the pip install from test.pypi"
 echo "Finding marksafe"
 sudo find / -iname "marksafe*" 2>/dev/null
