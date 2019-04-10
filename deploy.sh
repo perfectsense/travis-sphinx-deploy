@@ -26,7 +26,7 @@ sudo find / -iname "marksafe*" 2>/dev/null
 echo "Finding pygments"
 sudo find / -iname "pygments*" 2>/dev/null
 # sudo python -m pygments-lexer-overrides
-sudo python -m pygments_lexer_overrides
+sudo python -m pygments-lexer-overrides
 echo "Finished run of pygments-lexer-overrides"
 cd $1
 make html
