@@ -18,16 +18,8 @@ set -e -u
 # Sphinx Build
 sudo pip install --upgrade pip==9.0.3
 sudo pip install -r requirements.txt
-echo "Finished the pip install from requirements"
-sudo pip install -i https://test.pypi.org/simple/ pygments-lexer-overrides==0.0.4
-echo "Finished the pip install from test.pypi"
-echo "Finding marksafe"
-sudo find / -iname "marksafe*" 2>/dev/null
-echo "Finding pygments"
-sudo find / -iname "pygments*" 2>/dev/null
-# sudo python -m pygments-lexer-overrides
+# Use the following package to create symbolic links to customized Pygments lexers.
 sudo python -m pygments-lexer-overrides
-echo "Finished run of pygments-lexer-overrides"
 cd $1
 make html
 
