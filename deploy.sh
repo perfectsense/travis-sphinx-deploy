@@ -18,6 +18,9 @@ set -e -u
 # Sphinx Build
 sudo pip install --upgrade pip==9.0.3
 sudo pip install -r requirements.txt
+
+BUILD_DIRECTORY=`pwd`/$1
+echo "The build directory is $BUILD_DIRECTORY"
 # Use the following package to create symbolic links to customized Pygments lexers.
 cd /usr/local/lib/python2.7/dist-packages/pygments/lexers/
 sudo mv templates.py templates.py.old
@@ -26,7 +29,7 @@ sudo mv css.py css.py.old
 sudo ln -s /usr/local/lib/python2.7/dist-packages/pygments-lexer-overrides/css.py css.py
 sudo ln -s /usr/local/lib/python2.7/dist-packages/pygments-lexer-overrides/templates.py templates.py
 
-cd $1
+cd $BUILD_DIRECTORY
 make html
 
 # If this Travis job is not a pull request, 
