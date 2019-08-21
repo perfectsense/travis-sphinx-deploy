@@ -19,7 +19,13 @@ set -e -u
 sudo pip install --upgrade pip==9.0.3
 sudo pip install -r requirements.txt
 # Use the following package to create symbolic links to customized Pygments lexers.
-sudo python -m pygments-lexer-overrides
+sudo cd /usr/local/lib/python2.7/dist-packages/pygments/lexers/
+sudo mv templates.py templates.py.old
+sudo mv css.py css.py.old
+
+sudo ln -s /usr/local/lib/python2.7/dist-packages/pygments-lexer-overrides/css.py css.py
+sudo ln -s /usr/local/lib/python2.7/dist-packages/pygments-lexer-overrides/templates.py templates.py
+
 cd $1
 make html
 
