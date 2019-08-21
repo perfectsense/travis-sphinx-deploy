@@ -18,7 +18,23 @@ set -e -u
 # Sphinx Build
 sudo pip install --upgrade pip==9.0.3
 sudo pip install -r requirements.txt
-cd $1
+
+# Retain current directory passed from command line.
+BUILD_DIRECTORY=`pwd`/$1
+
+# Rename original Pygments files that produced lexer errors, and sym-link to the custom
+# lexers that provide better results. The source files for those custom lexers
+# are at https://github.com/markperfectsensedigital/custom_lexers
+
+cd /usr/local/lib/python2.7/dist-packages/pygments/lexers/
+sudo mv templates.py templates.py.old
+sudo mv css.py css.py.old
+
+sudo ln -s /usr/local/lib/python2.7/dist-packages/pygments-lexer-overrides/css.py css.py
+sudo ln -s /usr/local/lib/python2.7/dist-packages/pygments-lexer-overrides/templates.py templates.py
+
+# Change to the build directory and launch the job.
+cd $BUILD_DIRECTORY
 make html
 
 # If this Travis job is not a pull request, 
